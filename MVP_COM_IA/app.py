@@ -7,15 +7,17 @@ import joblib
 import matplotlib.pyplot as plt
 import pandas as pd
 import streamlit as st
+from pathlib import Path
 
 # 1. Configuração da página
 st.set_page_config(page_title="Classificação de países", layout="centered")
 
 
 # 2. Carregamento do modelo (executado uma única vez e mantido em cache)
+
 @st.cache_resource
 def carregar_modelo():
-    return joblib.load("modelo_paises.pkl")
+    return joblib.load(Path(__file__).parent / "modelo_paises.pkl")
 
 
 pacote = carregar_modelo()
